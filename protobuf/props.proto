@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package habitTracker;
+
+option go_package = "./";
+
+message Empty {}
+
+message HProps {
+    string date = 1;
+    bool bedBy12 = 2;
+    bool cooking = 3;
+    bool meditation = 4;
+    bool training = 5;
+}
+
+message SProps{
+    string date = 1;
+    bool bedBy12 = 2;
+    bool cooking = 3;
+    bool meditation = 4;
+    bool ringfit = 5;
+    bool techBlog = 6;
+    bool wakeUpBy8 = 7;
+}
+
+service HabitTracker {
+    rpc RegisterHProps (HProps) returns (Empty);
+    rpc RegisterSProps (SProps) returns (Empty);
+}

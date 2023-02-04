@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: aggregator-cronjob
+spec:
+  # UTC
+  schedule: "*/10 14 * * *"
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: aggregator
+            image: gcr.io/${_PROJECT_ID}/aggregator:v0.0.1
+            imagePullPolicy: IfNotPresent
+          restartPolicy: Never

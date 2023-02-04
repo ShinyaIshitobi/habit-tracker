@@ -1,0 +1,32 @@
+options:
+  env:
+  - GO111MODULE=on
+  volumes:
+  - name: go-modules
+    path: /go
+  
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/$_REPO_NAME_NOTIFIER:$_COMMIT_SHA', './apps/notifier']
+
+  - name: gcr.io/cloud-builders/docker
+    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/$_REPO_NAME_REGISTERER:$_COMMIT_SHA', './apps/registerer']
+  
+  - name: gcr.io/cloud-builders/docker
+    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/$_REPO_NAME_AGGREGATOR:$_COMMIT_SHA', './apps/aggregator']
+
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', 'gcr.io/$_PROJECT_ID/$_REPO_NAME_NOTIFIER:$_COMMIT_SHA']
+
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', 'gcr.io/$_PROJECT_ID/$_REPO_NAME_REGISTERER:$_COMMIT_SHA']
+
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', 'gcr.io/$_PROJECT_ID/$_REPO_NAME_AGGREGATOR:$_COMMIT_SHA']
+  
+substitutions:
+  
+  _REPO_NAME_NOTIFIER: notifier
+  _REPO_NAME_REGISTERER: registerer
+  _REPO_NAME_AGGREGATOR: aggregator
+  _COMMIT_SHA: v0.0.1
