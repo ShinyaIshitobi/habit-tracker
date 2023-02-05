@@ -16,6 +16,7 @@ Notion Database に格納
 
 
 今回の実装では、k8s を勉強し始めたこともあり、Workloads API を使用してのアウトプットも兼ねています。
+zenn -> https://zenn.dev/sinchan/articles/07154aec998f3f
 
 # Architecture
 ![arch](images/arch.png)
