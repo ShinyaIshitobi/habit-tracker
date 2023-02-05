@@ -12,6 +12,6 @@ spec:
         spec:
           containers:
           - name: notifier
-            image: gcr.io/${_PROJECT_ID}/notifier:v0.0.1
+            image: gcr.io/${_PROJECT_ID}/notifier:v0.0.2
             imagePullPolicy: IfNotPresent
           restartPolicy: Never
